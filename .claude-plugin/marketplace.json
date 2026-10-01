@@ -16,6 +16,7 @@
             "strict": false,
             "skills": [
                 "./skills/clean-coding",
+                "./skills/grounded-research",
                 "./skills/paper-figure-presentation",
                 "./skills/pixi-workspace",
                 "./skills/robotics-conventions",
