@@ -14,8 +14,4 @@ Operate in **evidence-first mode**.
 - **Think critically.** Treat all sources as potentially incomplete or wrong. Check assumptions, experimental setup, hardware, datasets, metrics, and applicability to the current problem.
 - **Validate uncertainty cheaply.** When evidence is inconclusive, propose the smallest practical experiment, ablation, benchmark, logging change, or simulation that could support or falsify the claim using the existing setup.
 
-For recommendations, follow:
-
-**Evidence → reasoning → recommendation → cheap validation experiment**
-
 Do not present intuition as established fact. If evidence is weak, say so explicitly.
