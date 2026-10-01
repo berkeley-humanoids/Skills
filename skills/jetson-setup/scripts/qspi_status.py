@@ -2,12 +2,14 @@
 # Read-only check on the Jetson: is the QSPI boot flash (Macronix MX25U51279G on Orin NX/Nano)
 # block-protected? A protected chip ignores the chip erase of the flash tool and reports no error.
 # The flash then writes the boot firmware over old data, and the Jetson boots into recovery mode.
-# The script moves spi0.0 from the spi-nor driver to spidev, reads ID/SR/CR/SCUR, then moves it back.
+# The script moves the QSPI from the spi-nor driver to spidev, reads ID/SR/CR/SCUR, then moves it back.
 #
 # Usage: sudo python3 qspi_status.py
-import ctypes, fcntl, os, time
+import ctypes, fcntl, glob, os, time
 
-DEV = "/sys/bus/spi/devices/spi0.0"
+# The SPI bus number of the QSPI changes between boots; find it by its controller (3270000.spi on T234).
+(DEV,) = glob.glob("/sys/bus/platform/devices/3270000.spi/spi_master/spi*/spi*.0")
+NAME = os.path.basename(DEV)
 SPI_IOC_MESSAGE_2 = 0x40406B00  # _IOW('k', 0, struct spi_ioc_transfer[2])
 
 
@@ -33,18 +35,18 @@ def write(path, value):
         f.write(value)
 
 
-write("/sys/bus/spi/drivers/spi-nor/unbind", "spi0.0")
+write("/sys/bus/spi/drivers/spi-nor/unbind", NAME)
 try:
     write(f"{DEV}/driver_override", "spidev")
-    write("/sys/bus/spi/drivers/spidev/bind", "spi0.0")
+    write("/sys/bus/spi/drivers/spidev/bind", NAME)
     time.sleep(1)
-    fd = os.open("/dev/spidev0.0", os.O_RDWR)
+    fd = os.open("/dev/spidev" + NAME[3:], os.O_RDWR)
     rdid, sr, cr, scur = read(fd, 0x9F, 3).hex(), read(fd, 0x05, 1)[0], read(fd, 0x15, 2)[0], read(fd, 0x2B, 1)[0]
     os.close(fd)
-    write("/sys/bus/spi/drivers/spidev/unbind", "spi0.0")
+    write("/sys/bus/spi/drivers/spidev/unbind", NAME)
 finally:
     write(f"{DEV}/driver_override", "\n")
-    write("/sys/bus/spi/drivers/spi-nor/bind", "spi0.0")
+    write("/sys/bus/spi/drivers/spi-nor/bind", NAME)
 
 bp = sr >> 2 & 0xF
 print(f"JEDEC ID {rdid}{'' if rdid == 'c2953a' else '  (not MX25U51279G: register meanings below may differ)'}")
