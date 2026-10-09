@@ -18,10 +18,10 @@
                 "./skills/clean-coding",
                 "./skills/github-workflow",
                 "./skills/grounded-research",
-                "./skills/paper-figure-presentation",
+                "./skills/paper-figures",
                 "./skills/pixi-workspace",
                 "./skills/robotics-conventions",
-                "./skills/ros2-standard-code",
+                "./skills/ros2-conventions",
                 "./skills/ste-writing"
             ]
         }

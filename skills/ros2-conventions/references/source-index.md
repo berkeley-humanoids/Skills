@@ -1,6 +1,6 @@
 # Official source index
 
-This file is the lookup catalog for `ros2-standard-code`.
+This file is the lookup catalog for `ros2-conventions`.
 When a decision is version-sensitive, read the target-distro version of the documentation.
 
 ## REP corpus

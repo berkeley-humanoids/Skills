@@ -1,9 +1,9 @@
 ---
 name: pixi-workspace
-description: Use when creating, editing, or reviewing pixi.toml manifests, pixi tasks, workspace scripts (activate/doctor/canup), or any Berkeley Humanoids pixi+ROS2 workspaces.
+description: Berkeley Humanoids pixi + ROS 2 workspace conventions. Use when creating, editing, or reviewing pixi.toml manifests, pixi tasks, or workspace scripts (activate, doctor, canup).
 ---
 
-# Pixi-ROS2 Workspace Guideline
+# Pixi Workspace
 
 Every Berkeley Humanoids pixi workspace exposes the same pixi task
 interface: a universal maintenance core plus a reserved vocabulary for
@@ -19,7 +19,7 @@ replacement layer; everything keeps working verbatim inside `pixi shell`.
   `key:=value` forwards verbatim. Don't use typed `args` on them.
 - **No deployment or utility task may auto-build** — a hardware bringup
   must never trigger a surprise rebuild. Only `build` chains `setup`.
-  Display error message and provide guidance if we lack something.
+  If a prerequisite is missing, print an error that says how to fix it.
 - Where a new entry point goes (first rule that matches):
   1. operates on the workspace (fetch/build/verify) → maintenance task,
      universal names only;

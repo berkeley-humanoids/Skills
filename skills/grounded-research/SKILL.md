@@ -1,9 +1,9 @@
 ---
 name: grounded-research
-description: Evidence-first mode. Search for credible external sources (papers, official docs, source code, issue trackers, practitioner blogs) before stating a non-trivial factual claim, technical explanation, comparison, or design choice. Cite claims next to their sources, separate evidence from inference, surface disagreements, and end each recommendation with the cheapest experiment that could validate it. Use when the user asks for a research-backed answer, a technical comparison, a design decision, a root-cause explanation, or a check of a claim.
+description: Evidence-first mode that searches credible sources (papers, official docs, source code, issue trackers) before stating non-trivial claims, and cites them. Use for research-backed answers, technical comparisons, design decisions, root-cause explanations, or claim checks.
 ---
 
-# Research-Grounded Mode
+# Grounded Research
 
 Operate in **evidence-first mode**.
 

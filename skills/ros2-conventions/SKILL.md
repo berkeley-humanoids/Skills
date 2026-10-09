@@ -1,9 +1,9 @@
 ---
-name: ros2-standard-code
-description: Explicit-use-only reference for designing, implementing, and reviewing ROS 2 and ros2_control code against official standards and established community conventions.
+name: ros2-conventions
+description: ROS 2 and ros2_control standards and conventions from REPs, official docs, and precedent packages. Use when designing, writing, or reviewing ROS 2 packages, launch files, interfaces, controllers, or hardware components.
 ---
 
-# ROS 2 Standard Coding
+# ROS 2 Conventions
 
 ## Goal
 

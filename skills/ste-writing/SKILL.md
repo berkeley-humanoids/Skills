@@ -1,12 +1,6 @@
 ---
 name: ste-writing
-description: >-
-  Write or rewrite software documentation in Simplified Technical
-  English: READMEs, API references, manuals, tutorials, docs-site
-  pages, docstrings, code comments, error messages, changelogs, and
-  CLI help. Use when asked to write, edit, simplify, clarify, or
-  de-slop technical prose, or for plain English, consistent
-  terminology, active voice, or short sentences. 
+description: Simplified Technical English for software docs, including READMEs, API references, tutorials, docstrings, comments, error messages, changelogs, and CLI help. Use when asked to write, edit, simplify, clarify, or de-slop technical prose.
 ---
 
 # STE Writing
