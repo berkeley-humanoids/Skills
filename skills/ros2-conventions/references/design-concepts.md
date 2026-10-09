@@ -2,9 +2,7 @@
 
 This reference expands the design-rationale rules summarized in `../SKILL.md`.
 
-**Authority rule:** these articles explain architectural intent and several designs that became ROS 2 behavior, but some are old proposals.
-Use the target distro's documentation and public API for exact syntax, signatures,
-supported features, and implementation details.
+**Authority rule:** these articles explain architectural intent and several designs that became ROS 2 behavior, but some are old proposals. Use the target distro's documentation and public API for exact syntax, signatures, supported features, and implementation details.
 
 ## 1. Introduction to Real-time Systems
 
@@ -22,9 +20,7 @@ Key concepts:
 - Synchronization can introduce priority inversion. Lock-free or priority-aware mechanisms may help, but verify them for the target platform.
 - Measure scheduling jitter and instrument the actual RT loop. Page-fault/resource counters help explain latency spikes.
 
-Operational consequence:
-For ros2_control and other control loops, review every operation on the periodic path.
-Each one needs a bounded worst-case cost. "Usually fast" is not enough.
+Operational consequence: For ros2_control and other control loops, review every operation on the periodic path. Each one needs a bounded worst-case cost. "Usually fast" is not enough.
 
 ## 2. Proposal for Implementation of Real-time Systems in ROS 2
 
@@ -41,8 +37,7 @@ Key concepts:
 - Use a test-driven performance process. Stress the system, measure minimum, maximum, and average latency, count missed deadlines, and profile the bottlenecks.
 - The document's exact 2016 allocator/executor implementation proposals are historical and must not be copied as current API.
 
-Operational consequence:
-When reviewing "real-time safe" code, require evidence or a credible bound for the critical path and prefer current ros2_control/realtime_tools mechanisms over bespoke synchronization.
+Operational consequence: When reviewing "real-time safe" code, require evidence or a credible bound for the critical path and prefer current ros2_control/realtime_tools mechanisms over bespoke synchronization.
 
 ## 3. Clock and Time
 
@@ -59,8 +54,7 @@ Key concepts:
 - An algorithm that is sensitive to time discontinuities must react to them. Current ROS 2 exposes clock jump callbacks for this.
 - Before a ROS time source has supplied a value, ROS time may be uninitialized/zero.
 
-Operational consequence:
-Do not implement a driver timeout with ROS time if pausing simulation must not pause the hardware timeout. Conversely, do not stamp ROS messages with a private monotonic epoch.
+Operational consequence: Do not implement a driver timeout with ROS time if pausing simulation must not pause the hardware timeout. Conversely, do not stamp ROS messages with a private monotonic epoch.
 
 Current API check:
 - https://docs.ros.org/en/rolling/p/rcl/
@@ -80,8 +74,7 @@ Key concepts:
 - Event handlers are preferable to ad-hoc timing sleeps for sequencing that depends on state.
 - Launch descriptions should remain portable: use package-relative lookup/substitutions rather than host-specific paths.
 
-Historical boundary:
-Some remote-process/container-service details in this design article were proposals. Verify the target distro's current `launch`, `launch_ros`, and composition APIs.
+Historical boundary: Some remote-process/container-service details in this design article were proposals. Verify the target distro's current `launch`, `launch_ros`, and composition APIs.
 
 ## 5. ROS 2 Launch XML Format
 
@@ -98,8 +91,7 @@ Key concepts:
 - Parameters, remaps, environment changes, executables, and ROS nodes are declarative launch entities.
 - Built-in/user-defined substitutions provide values evaluated by launch rather than by hard-coded host assumptions.
 
-Current-format check:
-Use current `launch_xml` documentation/parser behavior for exact tag/attribute syntax.
+Current-format check: Use current `launch_xml` documentation/parser behavior for exact tag/attribute syntax.
 
 ## 6. ROS 2 Launch Static Descriptions / Frontend
 
@@ -112,11 +104,9 @@ Key concepts:
 - Substitutions are part of the frontend model and can be nested/interpolated.
 - Treat XML and YAML as two serializations of one frontend, not as two feature sets.
 
-Operational consequence:
-Do not build application architecture around XML-vs-YAML parser quirks. If adding a custom launch action/substitution, use the current frontend extension API and make it usable from supported frontends when that is a requirement.
+Operational consequence: Do not build application architecture around XML-vs-YAML parser quirks. If adding a custom launch action/substitution, use the current frontend extension API and make it usable from supported frontends when that is a requirement.
 
-Historical boundary:
-Parser registries/macros/decorator sketches in the article are implementation considerations, not guaranteed current API.
+Historical boundary: Parser registries/macros/decorator sketches in the article are implementation considerations, not guaranteed current API.
 
 ## 7. ROS Command Line Arguments
 
@@ -131,20 +121,15 @@ Key concepts:
 - In a multi-node executable, rules can be qualified to target the intended node.
 - The ROS client libraries parse these arguments. Application code still receives its own non-ROS arguments.
 
-Operational consequence:
-Standard ROS arguments already express these needs.
-Do not add custom flags such as `--node-name`, `--topic-remap`, or `--param-file`.
-Add one only when the application has a genuinely separate contract.
+Operational consequence: Standard ROS arguments already express these needs. Do not add custom flags such as `--node-name`, `--topic-remap`, or `--param-file`. Add one only when the application has a genuinely separate contract.
 
-Current guide:
-https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Node-arguments.html
+Current guide: https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Node-arguments.html
 
 ## 8. Actions
 
 Source: https://design.ros2.org/articles/actions.html
 
-Current concept guide:
-https://docs.ros.org/en/rolling/ROS-Framework/interfaces/About-Actions.html
+Current concept guide: https://docs.ros.org/en/rolling/ROS-Framework/interfaces/About-Actions.html
 
 Key concepts:
 
@@ -158,15 +143,13 @@ Key concepts:
 - Goal/request handling is expected to be quick. Current C++ tutorials explicitly warn that action callbacks should return quickly so they do not starve the executor.
 - Feedback rate, feedback QoS, and result retention all affect behavior and resource use. Set them through the target-distro server and client options.
 
-Operational consequence:
-An action server must define its concurrency/preemption semantics. "Accept every goal" is incomplete when two goals cannot execute safely at once.
+Operational consequence: An action server must define its concurrency/preemption semantics. "Accept every goal" is incomplete when two goals cannot execute safely at once.
 
 ## 9. Intra-process Communications in ROS 2
 
 Source: https://design.ros2.org/articles/intraprocess_communications.html
 
-Current composition guide:
-https://docs.ros.org/en/rolling/ROS-Framework/nodes/Working-with-nodes/Composition.html
+Current composition guide: https://docs.ros.org/en/rolling/ROS-Framework/nodes/Working-with-nodes/Composition.html
 
 Key concepts:
 
@@ -179,8 +162,7 @@ Key concepts:
 - `transient_local`/history and other QoS policies still have storage/delivery consequences.
 - The article ran its benchmarks on Dashing-era ROS 2. Do not treat those numbers as modern thresholds.
 
-Operational consequence:
-Enable `use_intra_process_comms` intentionally for composed components, choose callback/publication ownership with dataflow in mind, then benchmark the actual graph. For modern zero-copy/shared-memory/loaned-message behavior, use target-distro documentation rather than this article.
+Operational consequence: Enable `use_intra_process_comms` intentionally for composed components, choose callback/publication ownership with dataflow in mind, then benchmark the actual graph. For modern zero-copy/shared-memory/loaned-message behavior, use target-distro documentation rather than this article.
 
 ## Review questions derived from these articles
 

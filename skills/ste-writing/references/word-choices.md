@@ -1,8 +1,6 @@
 # Word choices for software documentation
 
-Read this file when you choose substitutions or fix terminology drift.
-The principle behind every entry: pick the plainest common word that
-keeps the exact meaning, then use that word the same way everywhere.
+Read this file when you choose substitutions or fix terminology drift. The principle behind every entry: pick the plainest common word that keeps the exact meaning, then use that word the same way everywhere.
 
 ## Substitutions
 
@@ -33,23 +31,18 @@ keeps the exact meaning, then use that word the same way everywhere.
 
 ## The API's name wins
 
-The substitution table never overrides a defined technical name. If the
-platform, standard, or API uses the term, use that term and only that
-term:
+The substitution table never overrides a defined technical name. If the platform, standard, or API uses the term, use that term and only that term:
 
 - `terminate()` exists → write "terminate the process".
-- The RFC says "octet" → write "octet", not "byte", when the distinction
-  matters.
+- The RFC says "octet" → write "octet", not "byte", when the distinction matters.
 - Kubernetes says "Pod" → write "Pod", capitalized, every time.
-- The CLI flag is `--verbose` → "verbose output" is the correct name for
-  what it produces.
+- The CLI flag is `--verbose` → "verbose output" is the correct name for what it produces.
 
 Define the term once at first use if a general reader will not know it.
 
 ## One name for one thing
 
-These pairs drift constantly in software docs. Pick one term per
-document (usually the one your API or platform uses) and hold it:
+These pairs drift constantly in software docs. Pick one term per document (usually the one your API or platform uses) and hold it:
 
 | Pick one of | Note |
 |---|---|
@@ -70,27 +63,12 @@ document (usually the one your API or platform uses) and hold it:
 
 ## Words that are fine
 
-Plain-language lists sometimes over-ban. Keep these when they are the
-precise term:
+Plain-language lists sometimes over-ban. Keep these when they are the precise term:
 
-- **read / write** — approved plain verbs. **create / delete / update**
-  are correct when they name the defined operation (the API's name
-  wins); otherwise prefer "make" and "erase".
-- **must / can / do not** — the clearest modality words. Replace
-  "should" with "must" when the requirement is real; a bare "should"
-  leaves the reader unsure whether the action is optional. (If the
-  document declares RFC 2119 keywords, follow RFC 2119 exactly.)
-- **deprecated, idempotent, atomic, thread-safe** — technical terms with
-  one meaning. Define at first use in beginner-facing docs.
+- **read / write** — approved plain verbs. **create / delete / update** are correct when they name the defined operation (the API's name wins); otherwise prefer "make" and "erase".
+- **must / can / do not** — the clearest modality words. Replace "should" with "must" when the requirement is real; a bare "should" leaves the reader unsure whether the action is optional. (If the document declares RFC 2119 keywords, follow RFC 2119 exactly.)
+- **deprecated, idempotent, atomic, thread-safe** — technical terms with one meaning. Define at first use in beginner-facing docs.
 
 ## Marketing and filler to delete on sight
 
-seamless, seamlessly, robust, powerful, cutting-edge, effortless,
-world-class, next-generation, revolutionary, blazing, lightning-fast,
-elegant, delightful, turnkey, best-in-class, state-of-the-art,
-game-changing, battle-tested, enterprise-grade, supercharge, unlock,
-unleash, empower, "it is important to note", "it should be noted",
-"it is worth noting", "please note that", "as you can see",
-"simply", "just" (as minimizers), "easily", "obviously", "of course",
-"In conclusion", "In summary" (in short documents), "Whether you're X
-or Y", "look no further".
+seamless, seamlessly, robust, powerful, cutting-edge, effortless, world-class, next-generation, revolutionary, blazing, lightning-fast, elegant, delightful, turnkey, best-in-class, state-of-the-art, game-changing, battle-tested, enterprise-grade, supercharge, unlock, unleash, empower, "it is important to note", "it should be noted", "it is worth noting", "please note that", "as you can see", "simply", "just" (as minimizers), "easily", "obviously", "of course", "In conclusion", "In summary" (in short documents), "Whether you're X or Y", "look no further".
