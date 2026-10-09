@@ -16,8 +16,7 @@
 
 ## Upgrade an installed version
 
-The plugin tracks this repository, so the marketplace refresh also moves
-the installed plugin to the current commit:
+The plugin tracks this repository, so the marketplace refresh also moves the installed plugin to the current commit:
 
 1. Update the marketplace.
 
@@ -27,8 +26,7 @@ the installed plugin to the current commit:
 
 2. Restart Claude Code. The new version applies after the restart.
 
-`claude plugin list` prints the installed version of each plugin as a
-commit hash.
+`claude plugin list` prints the installed version of each plugin as a commit hash.
 
 ## License
 

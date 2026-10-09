@@ -1,8 +1,6 @@
 # Additional implementation examples
 
-These are pattern examples. They do not replace verification against the target-distro API.
-Links here point at Rolling. Replace `/rolling/` with the target distro before you read them.
-See `source-index.md` for the full catalog.
+These are pattern examples. They do not replace verification against the target-distro API. Links here point at Rolling. Replace `/rolling/` with the target distro before you read them. See `source-index.md` for the full catalog.
 
 ## 1. Package naming decisions
 
@@ -46,9 +44,7 @@ A name such as:
 example_sim_ros2_control
 ```
 
-can be reasonable when it follows an established integration-package family.
-This is a ros2_control ecosystem convention, not a REP-144 special suffix.
-Search peer integrations before finalizing the name.
+can be reasonable when it follows an established integration-package family. This is a ros2_control ecosystem convention, not a REP-144 special suffix. Search peer integrations before finalizing the name.
 
 ## 2. Minimal CMake style example
 
@@ -151,10 +147,7 @@ public:
 }  // namespace my_robot_controller
 ```
 
-Before turning this into compilable code, open the target distro's
-[`ControllerInterface` API](https://control.ros.org/rolling/doc/api/) and a same-distro
-[controller example](https://control.ros.org/rolling/doc/ros2_controllers/doc/writing_new_controller.html).
-Add lifecycle callbacks only as needed and with the exact target-distro signatures.
+Before turning this into compilable code, open the target distro's [`ControllerInterface` API](https://control.ros.org/rolling/doc/api/) and a same-distro [controller example](https://control.ros.org/rolling/doc/ros2_controllers/doc/writing_new_controller.html). Add lifecycle callbacks only as needed and with the exact target-distro signatures.
 
 ## 5. Real-time data handoff pattern
 
@@ -181,8 +174,7 @@ bounded synchronous update()
 command interfaces
 ```
 
-If the computation itself is inherently long or blocking, consider the [ros2_control asynchronous-controller mechanism](https://control.ros.org/rolling/doc/ros2_control/controller_manager/doc/running_controllers_asynchronously.html)
-rather than forcing it into the controller manager's synchronous loop.
+If the computation itself is inherently long or blocking, consider the [ros2_control asynchronous-controller mechanism](https://control.ros.org/rolling/doc/ros2_control/controller_manager/doc/running_controllers_asynchronously.html) rather than forcing it into the controller manager's synchronous loop.
 
 ## 6. Source-selection example
 

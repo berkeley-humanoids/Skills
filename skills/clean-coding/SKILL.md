@@ -1,9 +1,9 @@
 ---
 name: clean-coding
-description: Enforce minimal, direct code when writing or reviewing: no provenance comments, speculative config/state, wildcard signatures, argument bloat, one-use helpers, dead branches, or unnecessary documentation. Prefer concise names, centralized real configuration, linear code flow, and the smallest scoped diff.
+description: Minimal, direct code with the smallest scoped diff, concise names, and no speculative config, one-use helpers, dead code, or history comments. Use when writing or reviewing code.
 ---
 
-# Clean coding
+# Clean Coding
 
 Write the smallest obvious implementation that satisfies the current requirement. Unnecessary generality is a bug. Every added line needs a concrete reason to exist now.
 

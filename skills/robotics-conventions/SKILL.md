@@ -1,9 +1,9 @@
 ---
 name: robotics-conventions
-description: Use for robotics / robot-learning code when handling frames, units, axes, signs, quaternions, URDFs, sim-to-real, RL/IL policies, kinematics, hardware, visualization, or data pipelines.
+description: Robotics and robot-learning code conventions. Use when handling frames, units, axes, signs, quaternions, URDFs, sim-to-real, RL/IL policies, kinematics, hardware, visualization, or data pipelines.
 ---
 
-# Robotics conventions
+# Robotics Conventions
 
 - Prefer explicit names in variables, methods, classes, and configs.
   - Use `_left` / `_right`, not `_l` / `_r`.
@@ -35,7 +35,7 @@ description: Use for robotics / robot-learning code when handling frames, units,
   - Example: left arm shoulder-to-hand, right arm shoulder-to-hand, left leg hip-to-foot, right leg hip-to-foot.
   - Keep the ordering defined in one source of truth and reference it everywhere.
 
-- For ROS 2 or ros2_control code, use the `ros2-standard-code` skill.
+- For ROS 2 or ros2_control code, use the `ros2-conventions` skill.
 
 - Prefer environment managers:
   - `uv` for Python environments.
@@ -47,6 +47,6 @@ description: Use for robotics / robot-learning code when handling frames, units,
   - `.rbl` for saved Rerun visualizations that combine `.mcap` data with a Rerun layout.
 
 - Preferred visualization tools:
-  - Rerun for multimodal data visualization, especially require custom Blueprint panels.
-  - Viser for only motion and pose visualization.
+  - Rerun for multimodal data visualization, especially when it needs custom Blueprint panels.
+  - Viser for motion and pose visualization only.
   - MuJoCo for physics-based interactive visualization.

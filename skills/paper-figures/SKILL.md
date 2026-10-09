@@ -1,6 +1,6 @@
 ---
 name: paper-figures
-description: Produce publication-ready scientific figures that are clear, compact, accessible, and visually consistent. Use this skill whenever the user is making a figure, plot, chart, panel, or schematic for a paper, manuscript, preprint, thesis, poster, or conference submission — including matplotlib/seaborn/matplotlib-style plotting code, multi-panel figure layouts, colormap or palette choices, font/line/marker sizing, or figure export settings. Trigger it even when the user just says "make a plot for my paper," "clean up this figure," "what colormap should I use," or pastes plotting code to improve, and especially when targeting Nature, Science, IEEE, NeurIPS, ICML, or arXiv. Do not wait for the words "publication-ready."
+description: Publication-ready scientific figures built at final print size, with consistent typography, colorblind-safe palettes, line weights, and export settings. Use when making or fixing a plot, chart, panel, or schematic for a paper, thesis, poster, or submission (Nature, Science, IEEE, NeurIPS, ICML, arXiv), including matplotlib or seaborn code and colormap choices.
 ---
 
 # Paper Figures
@@ -15,6 +15,7 @@ Set these once, then tune per figure. They encode most of the rules below.
 
 ```python
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 MM = 1 / 25.4
 SINGLE_COL = 89 * MM    # ~89-90 mm, single column

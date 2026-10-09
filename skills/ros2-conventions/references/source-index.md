@@ -1,7 +1,6 @@
 # Official source index
 
-This file is the lookup catalog for `ros2-standard-code`.
-When a decision is version-sensitive, read the target-distro version of the documentation.
+This file is the lookup catalog for `ros2-conventions`. When a decision is version-sensitive, read the target-distro version of the documentation.
 
 ## REP corpus
 
@@ -19,14 +18,11 @@ When a decision is version-sensitive, read the target-distro version of the docu
 | [REP-2004](https://reps.openrobotics.org/rep-2004/) | Package quality categories | Active |
 | [REP-2005](https://reps.openrobotics.org/rep-2005/) | ROS 2 common packages: the curated list this skill uses to pick precedents | Informational/Active; a curated package list, not a style mandate |
 
-Do not assume all indexed REPs apply to ordinary ROS 2 application code.
-Search the index by subject before making decisions about messages, frames, QoS, security, hardware acceleration, bag formats, etc.
+Do not assume all indexed REPs apply to ordinary ROS 2 application code. Search the index by subject before making decisions about messages, frames, QoS, security, hardware acceleration, bag formats, etc.
 
 ## Language and general standards
 
-ROS 2 style is defined as a set of deviations from these documents.
-Read the ROS 2 Code Style page together with them.
-Where they disagree, ROS 2 wins.
+ROS 2 style is defined as a set of deviations from these documents. Read the ROS 2 Code Style page together with them. Where they disagree, ROS 2 wins.
 
 | Source | Use |
 |---|---|
@@ -55,9 +51,7 @@ Where they disagree, ROS 2 wins.
 | [Creating an action](https://docs.ros.org/en/rolling/ROS-Framework/interfaces/actions/Working-with-actions/Creating-an-Action.html) | Interface-package separation pattern; if URL moves, search docs by title |
 | [ROS Index](https://index.ros.org/) | Find package source, supported distros, metadata |
 
-Rolling reorganized its documentation tree, so a Rolling path often does not exist under a
-released distro (and the reverse). Do not rewrite a URL by swapping `/rolling/` for the
-target distro without checking it. Search `docs.ros.org` by page title instead.
+Rolling reorganized its documentation tree, so a Rolling path often does not exist under a released distro (and the reverse). Do not rewrite a URL by swapping `/rolling/` for the target distro without checking it. Search `docs.ros.org` by page title instead.
 
 ### Design rationale
 
@@ -65,8 +59,7 @@ target distro without checking it. Search `docs.ros.org` by page title instead.
 |---|---|
 | [design.ros2.org](https://design.ros2.org/) | Architecture articles behind ROS 2 behavior |
 
-Read `design-concepts.md` in this directory first: it summarizes the relevant articles and
-marks which parts are historical proposals rather than current API.
+Read `design-concepts.md` in this directory first: it summarizes the relevant articles and marks which parts are historical proposals rather than current API.
 
 ### Source repositories
 
@@ -100,13 +93,11 @@ Use the branch that matches the target distro whenever possible.
 | [generate_parameter_library](https://github.com/PickNikRobotics/generate_parameter_library) | The parameter-generation precedent named in the skill |
 | [control_toolbox](https://github.com/ros-controls/control_toolbox) | Shared control primitives (PID, filters) before writing your own |
 
-Important: Rolling is a development version.
-For released projects, replace `/rolling/` with the target distro and verify the corresponding source branch/tag.
+Important: Rolling is a development version. For released projects, replace `/rolling/` with the target distro and verify the corresponding source branch/tag.
 
 ## Core packages and APIs
 
-Every one of these is named somewhere in `../SKILL.md`. Use the API docs for signatures and
-the repository for implementation and style precedent. Swap `/rolling/` for the target distro.
+Every one of these is named somewhere in `../SKILL.md`. Use the API docs for signatures and the repository for implementation and style precedent. Swap `/rolling/` for the target distro.
 
 | Package | API docs | Source |
 |---|---|---|
@@ -140,16 +131,11 @@ A precedent is evidence of convention, not a substitute for a specification.
 
 ## Reference codebases outside ros-controls
 
-These are real ros2_control and ROS 2 integrations.
-They answer questions that no specification answers: how to split packages, where to draw
-the driver and controller boundary, how to branch per distro, and how to lay out launch
-and configuration files. None of them is normative.
-Weigh each by how well it is maintained and how close it is to your target distro.
+These are real ros2_control and ROS 2 integrations. They answer questions that no specification answers: how to split packages, where to draw the driver and controller boundary, how to branch per distro, and how to lay out launch and configuration files. None of them is normative. Weigh each by how well it is maintained and how close it is to your target distro.
 
 ### UniversalRobots — https://github.com/UniversalRobots
 
-The strongest vendor-driver precedent in this list. BSD-3-Clause, actively maintained,
-released into the ROS 2 buildfarm, and branched per distro.
+The strongest vendor-driver precedent in this list. BSD-3-Clause, actively maintained, released into the ROS 2 buildfarm, and branched per distro.
 
 | Repository | Use as precedent for |
 |---|---|
@@ -161,15 +147,10 @@ released into the ROS 2 buildfarm, and branched per distro.
 
 Specific patterns worth copying:
 
-- Package split inside one repository: `ur` (metapackage), `ur_robot_driver`,
-  `ur_controllers`, `ur_calibration`, `ur_dashboard_msgs`, `ur_moveit_config`.
-  Each name states its role and matches REP-144 families.
+- Package split inside one repository: `ur` (metapackage), `ur_robot_driver`, `ur_controllers`, `ur_calibration`, `ur_dashboard_msgs`, `ur_moveit_config`. Each name states its role and matches REP-144 families.
 - The `ur` metapackage declares only `exec_depend` on its members.
-- Plugin descriptions are named for their role and exported per package:
-  `hardware_interface_plugin.xml` in `ur_robot_driver`,
-  `controller_plugins.xml` in `ur_controllers`.
-- One branch per distro (`humble`, `jazzy`, `kilted`, `lyrical`, `main`) plus
-  per-distro `.repos` files. Read the branch that matches your target distro, not `main`.
+- Plugin descriptions are named for their role and exported per package: `hardware_interface_plugin.xml` in `ur_robot_driver`, `controller_plugins.xml` in `ur_controllers`.
+- One branch per distro (`humble`, `jazzy`, `kilted`, `lyrical`, `main`) plus per-distro `.repos` files. Read the branch that matches your target distro, not `main`.
 
 ### ROBOTIS-GIT — https://github.com/ROBOTIS-GIT
 
@@ -187,20 +168,13 @@ Actuator-level ros2_control integration and a widely used reference platform.
 
 Notes:
 
-- `dynamixel_hardware_interface` is single-package at repository root, with the plugin
-  description (`dynamixel_hardware_interface_plugin.xml`) beside `package.xml`.
-  The UR driver uses a multi-package layout instead. Both layouts are conventional.
-- `cyclo_control` splits `cyclo_motion_controller_core` (no ROS) from
-  `cyclo_motion_controller_ros` and `cyclo_motion_controller_ros_py`, and vendors a
-  solver as `osqp_eigen_vendor`. This is a concrete `_vendor` and `_ros` precedent.
-- Some ROBOTIS repositories still carry ROS 1 packages, and some are archived.
-  Check the `package.xml` format and the branch before you treat one as a ROS 2 precedent.
+- `dynamixel_hardware_interface` is single-package at repository root, with the plugin description (`dynamixel_hardware_interface_plugin.xml`) beside `package.xml`. The UR driver uses a multi-package layout instead. Both layouts are conventional.
+- `cyclo_control` splits `cyclo_motion_controller_core` (no ROS) from `cyclo_motion_controller_ros` and `cyclo_motion_controller_ros_py`, and vendors a solver as `osqp_eigen_vendor`. This is a concrete `_vendor` and `_ros` precedent.
+- Some ROBOTIS repositories still carry ROS 1 packages, and some are archived. Check the `package.xml` format and the branch before you treat one as a ROS 2 precedent.
 
 ### qiayuanl — https://github.com/qiayuanl
 
-Research-grade legged-robot control. Useful for control-stack *architecture*, not for
-ROS 2 API or style questions. These are individual-maintainer repositories: no ROS
-buildfarm release, no distro branches, and local style that departs from ROS 2 policy.
+Research-grade legged-robot control. Useful for control-stack *architecture*, not for ROS 2 API or style questions. These are individual-maintainer repositories: no ROS buildfarm release, no distro branches, and local style that departs from ROS 2 policy.
 
 | Repository | Status | Use as precedent for |
 |---|---|---|
@@ -210,23 +184,14 @@ buildfarm release, no distro branches, and local style that departs from ROS 2 p
 | [mujoco_ros2_control](https://github.com/qiayuanl/mujoco_ros2_control) | ROS 2 | A simulator-backed `hardware_interface` plus a separate `*_demos` package |
 | [traj_tracking_controller](https://github.com/qiayuanl/traj_tracking_controller) | ROS 2 | A small single-purpose controller package with its own plugin description |
 
-Read `legged_control` to see how it divides an NMPC, WBC, and state-estimation stack
-across packages, and where it puts the real-time boundary. Do **not** port its APIs: `ros_control`
-`RobotHW` is not ros2_control `hardware_interface`, and the ROS 1 controller lifecycle
-differs from the ROS 2 lifecycle. Translate the architecture, then verify every
-signature against target-distro ros2_control.
+Read `legged_control` to see how it divides an NMPC, WBC, and state-estimation stack across packages, and where it puts the real-time boundary. Do **not** port its APIs: `ros_control` `RobotHW` is not ros2_control `hardware_interface`, and the ROS 1 controller lifecycle differs from the ROS 2 lifecycle. Translate the architecture, then verify every signature against target-distro ros2_control.
 
-`legged_template_controller` shows a working ros2_control plugin export
-(`pluginlib_export_plugin_description_file(controller_interface ...)`), but it is a
-template: its `package.xml` metadata is placeholder text, it uses `ament_cmake_auto`
-rather than plain `ament_cmake`, and its indentation does not follow ROS 2 style.
-Take the structure, not the boilerplate.
+`legged_template_controller` shows a working ros2_control plugin export (`pluginlib_export_plugin_description_file(controller_interface ...)`), but it is a template: its `package.xml` metadata is placeholder text, it uses `ament_cmake_auto` rather than plain `ament_cmake`, and its indentation does not follow ROS 2 style. Take the structure, not the boilerplate.
 
 ### How to weigh these against official sources
 
 1. A specification or REP outranks all of them.
-2. `ros-controls/ros2_control`, `ros2_controllers`, and `ros2_control_demos` outrank them
-   for framework API and lifecycle questions.
+2. `ros-controls/ros2_control`, `ros2_controllers`, and `ros2_control_demos` outrank them for framework API and lifecycle questions.
 3. Use a vendor repository when the question is "how do real drivers organize this?"
 4. Prefer a repository that is buildfarm-released and distro-branched over one that is not.
 5. Check the branch matching your target distro before quoting any of them.
@@ -236,33 +201,23 @@ Take the structure, not the boilerplate.
 
 ### `_vendor`
 
-`_vendor` is not defined by REP-144 as a general suffix.
-It is nevertheless an established ROS 2 packaging convention.
-For example, ROS 2 Jazzy introduced `gz_*_vendor` packages to make Gazebo dependencies consumable by ROS 2 packages:
+`_vendor` is not defined by REP-144 as a general suffix. It is nevertheless an established ROS 2 packaging convention. For example, ROS 2 Jazzy introduced `gz_*_vendor` packages to make Gazebo dependencies consumable by ROS 2 packages:
 
 - https://docs.ros.org/en/rolling/Get-Started/Releases/Release-Jazzy-Jalisco.html
 
-Other vendor packages exist in the ROS ecosystem.
-A downstream example is `osqp_eigen_vendor` inside
-[ROBOTIS-GIT/cyclo_control](https://github.com/ROBOTIS-GIT/cyclo_control), which packages a
-solver dependency for the surrounding control packages.
-Use the suffix for actual dependency-vendoring/packaging roles, not for arbitrary wrappers.
+Other vendor packages exist in the ROS ecosystem. A downstream example is `osqp_eigen_vendor` inside [ROBOTIS-GIT/cyclo_control](https://github.com/ROBOTIS-GIT/cyclo_control), which packages a solver dependency for the surrounding control packages. Use the suffix for actual dependency-vendoring/packaging roles, not for arbitrary wrappers.
 
 ### `_ament`
 
-No general REP rule was found that gives every `*_ament` package a standard semantic role.
-Do not claim one.
-Search the specific ament repository/tool precedent before introducing such a name.
+No general REP rule was found that gives every `*_ament` package a standard semantic role. Do not claim one. Search the specific ament repository/tool precedent before introducing such a name.
 
 ### `_control`
 
-No general REP rule defines `_control`.
-In ros2_control ecosystems, prefer names that state the actual function (`*_controller`, `*_hardware`, `*_description`, `*_bringup`, integration names such as `*_ros2_control`) and verify peer packages.
+No general REP rule defines `_control`. In ros2_control ecosystems, prefer names that state the actual function (`*_controller`, `*_hardware`, `*_description`, `*_bringup`, integration names such as `*_ros2_control`) and verify peer packages.
 
 ## Version-sensitive CMake note
 
-Kilted/Rolling documentation deprecates `ament_target_dependencies()` in favor of modern CMake imported targets.
-For older distros, check the target distro before changing an established build style.
+Kilted/Rolling documentation deprecates `ament_target_dependencies()` in favor of modern CMake imported targets. For older distros, check the target distro before changing an established build style.
 
 ## Maintenance procedure
 
@@ -274,7 +229,6 @@ Periodically re-check:
 4. ros2_control migration/release notes and current API.
 5. Deprecation warnings emitted by current builds.
 6. 2-3 relevant official packages for conventions that have no normative document.
-7. The reference codebases listed above: whether they still track a supported distro, and
-   whether any has been archived or superseded.
+7. The reference codebases listed above: whether they still track a supported distro, and whether any has been archived or superseded.
 
 Update this index when an official source moves or supersedes an older one.
