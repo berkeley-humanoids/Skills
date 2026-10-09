@@ -136,6 +136,13 @@ Read `references/doc-types.md` before you write a specific document type. It cov
 - Follow the site's document model when one exists. In Diátaxis terms: tutorials and explanations take flavored mode, how-to guides and reference pages take strict mode.
 - Tables in reference pages may use consistent fragments instead of full sentences.
 
+## Line breaks
+
+In Markdown and MDX, write each paragraph and each list item on one line. Do not hard-wrap prose at a fixed width. Renderers join the lines of a paragraph, so hard wraps do not change the output. Hard wraps only add noise to diffs, because a small edit re-wraps the lines around it.
+
+- In an existing file, keep the line breaks that the file already uses. Do not re-wrap a file as part of a prose edit.
+- Code comments, docstrings, commit messages, and plain-text files keep the line-length limit of their own convention.
+
 ## Workflow
 
 1. Read the full source before you edit.
@@ -162,3 +169,4 @@ Read `references/doc-types.md` before you write a specific document type. It cov
 - Do notes contain information only, with every limit and requirement in its step?
 - In strict mode, is every sentence within its length cap, with all contractions expanded?
 - Are all code spans, paths, flags, and links byte-identical to the source?
+- In a new Markdown file, is each paragraph and list item on one line?
