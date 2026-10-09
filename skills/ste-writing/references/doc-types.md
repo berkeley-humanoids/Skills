@@ -103,7 +103,7 @@ Mode: flavored.
 
 Mode: flavored.
 
-- Subject line: imperative, ≤ 50 characters, no trailing period.
+- Subject line: imperative, ≤ 72 characters, no trailing period.
 - Body: what changed and why. The diff shows how; the message records why.
 - One logical change per commit message claim. If the body needs "also", the commit may need a split — say so instead of hiding it.
 - PR description: state the problem, the approach, and how you tested it, as three short paragraphs or headed sections. No filler openers.
