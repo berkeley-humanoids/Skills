@@ -29,7 +29,7 @@ If the repository has its own conventions, follow them. Otherwise, use these def
 ## Pull Requests
 - Put one focused change in each PR.
 - Use the Conventional Commits format for the PR title.
-- Keep the PR description concise and minimal: **why, what, tests**. Do not include anything obvious or not applicable.
+- Keep the PR description concise and minimal. Do not include anything obvious or not applicable.
 - If relevant, state important trade-offs, breaking changes, or limitations.
 - Do not write boilerplate, self-congratulation, implementation diaries, or redundant file-by-file descriptions.
 - Open the PR as a draft early, so that each feature branch has an associated PR.
